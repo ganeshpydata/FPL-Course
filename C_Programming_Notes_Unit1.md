@@ -491,33 +491,63 @@ int main() {
 
 ## 14. Declaring a Variable as Volatile
 
-The `volatile` keyword tells the compiler that a variable's value **may change at any time** — due to external factors (hardware, interrupt service routines, another thread) — **without any action being taken by the code** the compiler sees.
+# `volatile` in C — Beginner Notes
 
-Because of this, the compiler is instructed **not to apply optimizations** (like caching the value in a register) to that variable — it must be **re-read from memory every time** it is used.
+## 1. What is `volatile`?
 
-**Syntax:**
+`volatile` is a **type qualifier** in C. It tells the compiler that a variable's value may change unexpectedly, outside the normal flow of the code.
+
+Because of this, the compiler must respect accesses to the variable instead of assuming its value stays the same.
+
+It is commonly used with:
+
+- Hardware registers in embedded systems
+- Variables updated by interrupt service routines (ISRs)
+- Memory-mapped input/output
+
+> **Remember:** `volatile` does not make a variable thread-safe or atomic. It does not prevent race conditions.
+
+## 2. Syntax
+
 ```c
-volatile data_type variable_name;
+volatile int flag;
 ```
 
-**Example (conceptual — used in embedded systems):**
+These declarations mean the same thing:
+
 ```c
-volatile int flag = 0;
+volatile int value;
+int volatile value;
+```
 
-void ISR() {          // Interrupt Service Routine (hardware can change 'flag')
-    flag = 1;
-}
+## 3. Basic example
 
-int main() {
-    while (flag == 0) {
-        // Wait here until flag is changed by hardware/interrupt
-        // Without 'volatile', compiler might optimize this into
-        // an infinite loop, assuming flag never changes.
-    }
-    printf("Flag changed, proceeding...\n");
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    volatile int number = 10;
+
+    printf("Initial value: %d\n", number);
+
+    number = 20;
+
+    printf("Updated value: %d\n", number);
+
     return 0;
 }
 ```
+
+### Output
+
+```text
+Initial value: 10
+Updated value: 20
+```
+
+
+
 
 **Where `volatile` is commonly used:**
 - Variables shared with **hardware registers**.
