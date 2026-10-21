@@ -290,14 +290,43 @@ Operate directly on the **individual bits** of integer data types (`int`, `char`
 **Example Program:**
 ```c
 #include <stdio.h>
+
 int main() {
     int a = 5, b = 3;
-    printf("a & b  = %d\n", a & b);    // 1
-    printf("a | b  = %d\n", a | b);    // 7
-    printf("a ^ b  = %d\n", a ^ b);    // 6
-    printf("~a     = %d\n", ~a);       // -6
-    printf("a << 1 = %d\n", a << 1);   // 10
-    printf("a >> 1 = %d\n", a >> 1);   // 2
+    // a = 0101 (5)
+    // b = 0011 (3)
+
+    printf("a & b  = %d\n", a & b);    // AND: 1 only if both bits are 1
+                                       //   0101
+                                       // & 0011
+                                       //   ----
+                                       //   0001 = 1
+
+    printf("a | b  = %d\n", a | b);    // OR: 1 if either bit is 1
+                                       //   0101
+                                       // | 0011
+                                       //   ----
+                                       //   0111 = 7
+
+    printf("a ^ b  = %d\n", a ^ b);    // XOR: 1 only if bits differ
+                                       //   0101
+                                       // ^ 0011
+                                       //   ----
+                                       //   0110 = 6
+
+    printf("~a     = %d\n", ~a);       // NOT: flips every bit
+                                       //   ~0101 = 1010 (in 4 bits)
+                                       //   in 32-bit two's complement
+                                       //   this equals -(5 + 1) = -6
+
+    printf("a << 1 = %d\n", a << 1);   // Left shift: move bits left by 1
+                                       //   0101 -> 1010 = 10
+                                       //   (same as 5 * 2)
+
+    printf("a >> 1 = %d\n", a >> 1);   // Right shift: move bits right by 1
+                                       //   0101 -> 0010 = 2
+                                       //   (same as 5 / 2, rounded down)
+
     return 0;
 }
 ```
