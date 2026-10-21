@@ -287,6 +287,12 @@ Operate directly on the **individual bits** of integer data types (`int`, `char`
 | `a << 1` | 1010 | 10 |
 | `a >> 1` | 0010 | 2 |
 
+**Bit Position**
+
+bit position:   3    2    1    0
+
+place value:    8    4    2    1
+
 **Example Program:**
 ```c
 #include <stdio.h>
