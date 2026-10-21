@@ -288,19 +288,31 @@ label:
 **Example Program:**
 ```c
 #include <stdio.h>
+
 int main() {
     int i = 1;
 
-    start:                     // label
-    if (i <= 5) {
-        printf("%d ", i);
-        i++;
-        goto start;             // jump back to label
+    start:                      // label: goto jumps back to here
+    if (i <= 5) {               // check the condition each time we arrive
+        printf("%d ", i);       // print the current value of i
+        i++;                    // increase i by 1
+        goto start;             // jump back to the label "start"
     }
-    printf("\nDone\n");
+    printf("\nDone\n");         // runs only when i > 5 (condition is false)
     return 0;
 }
-// Output: 1 2 3 4 5
+
+/* How it runs:
+   Step 1: i = 1 -> 1 <= 5 true  -> print 1, i = 2, goto start
+   Step 2: i = 2 -> 2 <= 5 true  -> print 2, i = 3, goto start
+   Step 3: i = 3 -> 3 <= 5 true  -> print 3, i = 4, goto start
+   Step 4: i = 4 -> 4 <= 5 true  -> print 4, i = 5, goto start
+   Step 5: i = 5 -> 5 <= 5 true  -> print 5, i = 6, goto start
+   Step 6: i = 6 -> 6 <= 5 false -> skip the if block, print Done
+*/
+
+// Output:
+// 1 2 3 4 5
 // Done
 ```
 
