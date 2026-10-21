@@ -552,11 +552,23 @@ C provides many ready-made mathematical functions in the **`math.h`** header fil
 int main() {
     double num = 25.0;
 
+    // sqrt: the number that multiplied by itself gives 25 -> 5 x 5 = 25
     printf("Square root of %.1f = %.2f\n", num, sqrt(num));       // 5.00
+
+    // pow(base, exponent): 2 x 2 x 2 = 8
     printf("2 raised to power 3 = %.2f\n", pow(2, 3));            // 8.00
+
+    // ceil: rounds UP to the next whole number (4.2 -> 5)
     printf("Ceil of 4.2 = %.2f\n", ceil(4.2));                    // 5.00
+
+    // floor: rounds DOWN to the previous whole number (4.8 -> 4)
     printf("Floor of 4.8 = %.2f\n", floor(4.8));                  // 4.00
+
+    // fabs: removes the minus sign (absolute value) -> -7.5 becomes 7.5
+    // use fabs for decimals; plain abs is for ints
     printf("Absolute value of -7.5 = %.2f\n", fabs(-7.5));        // 7.50
+
+    // log10: "10 to what power gives 1000?" -> 10^3 = 1000, so 3
     printf("Log base 10 of 1000 = %.2f\n", log10(1000));          // 3.00
 
     return 0;
